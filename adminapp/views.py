@@ -289,7 +289,7 @@ def students_create(request):
 @login_required_decorator
 def students_edit(request,pk):
     model = Students.objects.get(pk=pk)
-    form = SubjectForm(request.POST or None, instance=model)
+    form = StudentsForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
         return redirect('students_list')
