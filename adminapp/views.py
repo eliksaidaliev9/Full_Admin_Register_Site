@@ -31,21 +31,17 @@ def login_page(request):
     return render(request, 'login.html')
 
 
-# @login_required_decorator
-# def home_page(request):
-#     faculties = services.get_faculties()
-#     kafedras = services.get_kafedra()
-#     ctx = {
-#         'counts': {
-#             'faculties': len(faculties),
-#             'kafedras': len(kafedras),
-#         }
-#     }
-#     return render(request, 'index.html', ctx)
-
 @login_required_decorator
 def home_page(request):
-    return render(request, 'index.html')
+    faculties = services.get_faculties()
+    kafedras = services.get_kafedra()
+    ctx = {
+        'counts': {
+            'faculties': len(faculties),
+            'kafedras': len(kafedras),
+        }
+    }
+    return render(request, 'index.html', ctx)
 
 
 class SignUpView(generic.CreateView):
@@ -140,3 +136,9 @@ def kafedra_list(request):
         "kafedras": kafedras
     }
     return render(request, 'kafedra/list.html', ctx)
+
+
+@login_required_decorator
+def subject_create(request):
+    model = Subject()
+    form =
