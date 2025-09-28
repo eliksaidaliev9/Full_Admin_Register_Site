@@ -31,17 +31,21 @@ def login_page(request):
     return render(request, 'login.html')
 
 
+# @login_required_decorator
+# def home_page(request):
+#     faculties = services.get_faculties()
+#     kafedras = services.get_kafedra()
+#     ctx = {
+#         'counts': {
+#             'faculties': len(faculties),
+#             'kafedras': len(kafedras),
+#         }
+#     }
+#     return render(request, 'index.html', ctx)
+
 @login_required_decorator
 def home_page(request):
-    faculties = services.get_faculties()
-    kafedras = services.get_kafedra()
-    ctx = {
-        'counts': {
-            'faculties': len(faculties),
-            'kafedras': len(kafedras),
-        }
-    }
-    return render(request, 'index.html', ctx)
+    return render(request, 'index.html')
 
 
 class SignUpView(generic.CreateView):
