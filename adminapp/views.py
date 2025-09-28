@@ -141,4 +141,4 @@ def kafedra_list(request):
 @login_required_decorator
 def subject_create(request):
     model = Subject()
-    form =
+    form = SubjectForm(request.POST)
