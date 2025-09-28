@@ -220,7 +220,7 @@ def teachers_delete(request, pk):
 
 @login_required_decorator
 def teachers_list(request):
-    teacherss = services.get_subject()
+    teacherss = services.get_teachers()
     ctx = {
         "teacherss": teacherss
     }
@@ -264,7 +264,7 @@ def groups_delete(request, pk):
 
 @login_required_decorator
 def groups_list(request):
-    groupss = services.get_subject()
+    groupss = services.get_groups()
     ctx = {
         "groupss": groupss
     }
@@ -309,7 +309,7 @@ def students_delete(request, pk):
 
 @login_required_decorator
 def students_list(request):
-    studentss = services.get_subject()
+    studentss = services.get_students()
     ctx = {
         "studentss": studentss
     }
