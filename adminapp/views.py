@@ -138,7 +138,179 @@ def kafedra_list(request):
     return render(request, 'kafedra/list.html', ctx)
 
 
+# SUBJECT
 @login_required_decorator
 def subject_create(request):
     model = Subject()
-    form = SubjectForm(request.POST)
+    form = SubjectForm(request.POST or None, instance=model)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('subject-list')
+    ctx = {
+        "form": form
+    }
+    return render(request,'subject/form.html',ctx)
+
+
+@login_required_decorator
+def subject_edit(request,pk):
+    model = Subject.objects.get(pk=pk)
+    form = SubjectForm(request.POST or None, instance=model)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('subject-list')
+    ctx = {
+        "model": model,
+        "form": form
+    }
+    return render(request,'subject/form.html',ctx)
+
+
+@login_required_decorator
+def subject_delete(request, pk):
+    model = Subject.objects.get(pk=pk)
+    model.delete()
+    return redirect('subject-list')
+
+
+@login_required_decorator
+def subject_list(request):
+    subjects = services.get_subject()
+    ctx = {
+        "subjects": subjects
+    }
+    return render(request, 'subject/list.html', ctx)
+
+
+# TEACHERS
+@login_required_decorator
+def teachers_create(request):
+    model = Teachers()
+    form = TeachersForm(request.POST or None, instance=model)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('teachers-list')
+    ctx = {
+        "form": form
+    }
+    return render(request,'teachers/form.html',ctx)
+
+
+
+@login_required_decorator
+def teachers_edit(request,pk):
+    model = Teachers.objects.get(pk=pk)
+    form = TeachersForm(request.POST or None, instance=model)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('teachers-list')
+    ctx = {
+        "model": model,
+        "form": form
+    }
+    return render(request,'teachers/form.html',ctx)
+
+
+@login_required_decorator
+def teachers_delete(request, pk):
+    model = Teachers.objects.get(pk=pk)
+    model.delete()
+    return redirect('teachers-list')
+
+
+@login_required_decorator
+def teachers_list(request):
+    teacherss = services.get_subject()
+    ctx = {
+        "subjectss": teacherss
+    }
+    return render(request, 'teachers/list.html', ctx)
+
+
+# GROUPS
+@login_required_decorator
+def groups_create(request):
+    model = Groups()
+    form = GroupsForm(request.POST or None, instance=model)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('groups-list')
+    ctx = {
+        "form": form
+    }
+    return render(request,'groups/form.html',ctx)
+
+
+@login_required_decorator
+def groups_edit(request,pk):
+    model = Groups.objects.get(pk=pk)
+    form = GroupsForm(request.POST or None, instance=model)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('groups-list')
+    ctx = {
+        "model": model,
+        "form": form
+    }
+    return render(request,'groups/form.html',ctx)
+
+
+@login_required_decorator
+def groups_delete(request, pk):
+    model = Groups.objects.get(pk=pk)
+    model.delete()
+    return redirect('groups-list')
+
+
+@login_required_decorator
+def groups_list(request):
+    groupss = services.get_subject()
+    ctx = {
+        "groupss": groupss
+    }
+    return render(request, 'groups/list.html', ctx)
+
+
+
+# STUDENTS
+@login_required_decorator
+def students_create(request):
+    model = Students()
+    form = StudentsForm(request.POST or None, instance=model)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('students-list')
+    ctx = {
+        "form": form
+    }
+    return render(request,'students/form.html',ctx)
+
+
+@login_required_decorator
+def students_edit(request,pk):
+    model = Students.objects.get(pk=pk)
+    form = SubjectForm(request.POST or None, instance=model)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('students-list')
+    ctx = {
+        "model": model,
+        "form": form
+    }
+    return render(request,'students/form.html',ctx)
+
+
+@login_required_decorator
+def students_delete(request, pk):
+    model = Students.objects.get(pk=pk)
+    model.delete()
+    return redirect('students-list')
+
+
+@login_required_decorator
+def students_list(request):
+    studentss = services.get_subject()
+    ctx = {
+        "studentss": studentss
+    }
+    return render(request, 'students/list.html', ctx)
