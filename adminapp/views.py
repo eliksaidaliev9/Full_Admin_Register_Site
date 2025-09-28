@@ -145,7 +145,7 @@ def subject_create(request):
     form = SubjectForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
-        return redirect('subject-list')
+        return redirect('subject_list')
     ctx = {
         "form": form
     }
@@ -158,7 +158,7 @@ def subject_edit(request,pk):
     form = SubjectForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
-        return redirect('subject-list')
+        return redirect('subject_list')
     ctx = {
         "model": model,
         "form": form
@@ -170,7 +170,7 @@ def subject_edit(request,pk):
 def subject_delete(request, pk):
     model = Subject.objects.get(pk=pk)
     model.delete()
-    return redirect('subject-list')
+    return redirect('subject_list')
 
 
 @login_required_decorator
@@ -189,7 +189,7 @@ def teachers_create(request):
     form = TeachersForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
-        return redirect('teachers-list')
+        return redirect('teachers_list')
     ctx = {
         "form": form
     }
@@ -203,7 +203,7 @@ def teachers_edit(request,pk):
     form = TeachersForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
-        return redirect('teachers-list')
+        return redirect('teachers_list')
     ctx = {
         "model": model,
         "form": form
@@ -215,14 +215,14 @@ def teachers_edit(request,pk):
 def teachers_delete(request, pk):
     model = Teachers.objects.get(pk=pk)
     model.delete()
-    return redirect('teachers-list')
+    return redirect('teachers_list')
 
 
 @login_required_decorator
 def teachers_list(request):
     teacherss = services.get_subject()
     ctx = {
-        "subjectss": teacherss
+        "teacherss": teacherss
     }
     return render(request, 'teachers/list.html', ctx)
 
@@ -234,7 +234,7 @@ def groups_create(request):
     form = GroupsForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
-        return redirect('groups-list')
+        return redirect('groups_list')
     ctx = {
         "form": form
     }
@@ -247,7 +247,7 @@ def groups_edit(request,pk):
     form = GroupsForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
-        return redirect('groups-list')
+        return redirect('groups_list')
     ctx = {
         "model": model,
         "form": form
@@ -259,7 +259,7 @@ def groups_edit(request,pk):
 def groups_delete(request, pk):
     model = Groups.objects.get(pk=pk)
     model.delete()
-    return redirect('groups-list')
+    return redirect('groups_list')
 
 
 @login_required_decorator
@@ -279,7 +279,7 @@ def students_create(request):
     form = StudentsForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
-        return redirect('students-list')
+        return redirect('students_list')
     ctx = {
         "form": form
     }
@@ -292,7 +292,7 @@ def students_edit(request,pk):
     form = SubjectForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
-        return redirect('students-list')
+        return redirect('students_list')
     ctx = {
         "model": model,
         "form": form
@@ -304,7 +304,7 @@ def students_edit(request,pk):
 def students_delete(request, pk):
     model = Students.objects.get(pk=pk)
     model.delete()
-    return redirect('students-list')
+    return redirect('students_list')
 
 
 @login_required_decorator
